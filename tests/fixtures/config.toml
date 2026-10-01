@@ -1,0 +1,13 @@
+[server]
+name = "Test server"
+ip = "203.0.113.10"
+ssh = "testhost"
+control_domain = "example.com"
+[scan]
+project_dirs = ["/srv/apps"]
+[shorthand]
+"/srv/apps/" = "apps/"
+[services]
+docker = "docker"
+[catalog]
+file = "catalog.toml"

@@ -1,0 +1,28 @@
+# Copy to config.toml and edit — or point DASH_CONFIG at your own file.
+# config.toml and catalog.toml are git-ignored: keep your real values private.
+
+[server]
+name = "My server"                 # shown in the page header
+ip = "203.0.113.10"                # the public address your sites are served from (required)
+ssh = "myserver"                   # an alias in ~/.ssh/config used to read the server (ignored when VPS_LOCAL=1)
+control_domain = "example.com"     # a made-up hostname under this domain is tested as a control
+
+[scan]
+project_dirs = ["/srv/apps"]       # folders that hold one sub-folder per project
+traefik_dynamic_dir = ""           # Traefik file-provider folder, if you use one (finds routes that aren't Docker labels)
+traefik_static = ""                # Traefik main config path (only used to report if it can't be read)
+pm2_dirs = []                      # PM2 home folders to check, e.g. ["/root/.pm2"]
+# host processes (outside Docker) whose command line contains one of these words are listed:
+process_patterns = ["node", "next-server", "gunicorn", "uvicorn", "php", "java", "deno", "bun"]
+
+[shorthand]                        # keeps the folder column short; longest prefix wins
+"/srv/apps/" = "apps/"
+
+[services]                         # system services to show: <name used in the catalog> = <systemd unit>
+docker = "docker"
+# postgresql = "postgresql@16-main"
+# redis = "redis-server"
+# fail2ban = "fail2ban"
+
+[catalog]
+file = "catalog.toml"              # relative to this file

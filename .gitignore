@@ -1,0 +1,12 @@
+out/
+__pycache__/
+*.pyc
+*.db
+*.db-wal
+*.db-shm
+*.tmp
+config.toml
+catalog.toml
+!tests/fixtures/*.toml
+.env
+.DS_Store

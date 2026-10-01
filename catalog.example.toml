@@ -1,0 +1,45 @@
+# What each thing on your server IS. Discovery is automatic — anything not listed here still appears,
+# in a red "Unclassified" section, so a missing entry never hides something.
+#
+# key      what it matches
+#   <name>      a Docker container, by name
+#   route:<f>   a Traefik file route  (<traefik_dynamic_dir>/<f>.yml)
+#   proc:<id>   an app running directly on the host (needs `match`: text from its command line)
+#   svc:<name>  a system service listed under [services] in the config
+# section  web | app | infra          env  prod | dev
+# Items with the same `name` are shown on one row (Production and Dev side by side).
+
+[[item]]
+key = "shop-web-prod"
+section = "web"
+name = "Example Shop"
+env = "prod"
+
+[[item]]
+key = "shop-web-stage"
+section = "web"
+name = "Example Shop"
+env = "dev"
+note = "Staging copy"
+
+[[item]]
+key = "billing-api"
+section = "app"
+name = "Billing API"
+env = "prod"
+note = "Internal, no public address"
+
+[[item]]
+key = "proc:worker"
+section = "app"
+name = "Background worker"
+env = "prod"
+folder = "/srv/apps/worker"
+match = "worker/dist/index.js"
+note = "Runs on the host under PM2, not Docker"
+
+[[item]]
+key = "svc:docker"
+section = "infra"
+name = "Docker engine"
+env = "prod"
